@@ -69,7 +69,7 @@ export default function DoctorOverview() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session.session?.token || ""}`
+          "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
         },
         body: JSON.stringify({
           qualifications,

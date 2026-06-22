@@ -26,7 +26,7 @@ export default function AdminOverview() {
     
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/analytics`, {
       headers: {
-        "Authorization": `Bearer ${session.session?.token || ""}`
+        "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
       }
     })
       .then(res => res.json())

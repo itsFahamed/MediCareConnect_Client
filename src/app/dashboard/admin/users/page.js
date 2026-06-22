@@ -17,7 +17,7 @@ export default function AdminUsers() {
     if (!session?.user?.id) return;
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/users`, {
       headers: {
-        "Authorization": `Bearer ${session.session?.token || ""}`
+        "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
       }
     })
       .then(res => res.json())
@@ -42,7 +42,7 @@ export default function AdminUsers() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session.session?.token || ""}`
+          "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
         },
         body: JSON.stringify({ status: nextStatus })
       });
@@ -65,7 +65,7 @@ export default function AdminUsers() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/users/${id}`, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${session.session?.token || ""}`
+          "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
         }
       });
       const data = await res.json();

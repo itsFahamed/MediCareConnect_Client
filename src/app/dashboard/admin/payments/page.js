@@ -13,7 +13,7 @@ export default function AdminPayments() {
     
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/payments`, {
       headers: {
-        "Authorization": `Bearer ${session.session?.token || ""}`
+        "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
       }
     })
       .then(res => res.json())

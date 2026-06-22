@@ -35,7 +35,7 @@ export default function AdminDoctors() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session.session?.token || ""}`
+          "Authorization": `Bearer ${localStorage.getItem("token") || session.session?.token || ""}`
         },
         body: JSON.stringify({ verificationStatus: status })
       });
