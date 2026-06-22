@@ -47,11 +47,19 @@ export default function PatientAppointments() {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-appointments?patientId=${session.user.id}`)
       .then(res => res.json())
       .then(data => {
-        setAppointments(data);
+        if (Array.isArray(data)) {
+          setAppointments(data);
+        } else {
+          console.error("Failed to load appointments:", data?.error || data);
+          toast.error(data?.error || "Failed to load appointments");
+          setAppointments([]);
+        }
         setLoading(false);
       })
       .catch(err => {
         console.error(err);
+        toast.error("Network error loading appointments.");
+        setAppointments([]);
         setLoading(false);
       });
   };

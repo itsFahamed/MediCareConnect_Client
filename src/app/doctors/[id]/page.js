@@ -24,24 +24,6 @@ function BookingForm({ doctor, session }) {
   const [symptoms, setSymptoms] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isNotPatient = session && session.user.role !== "patient";
-
-  if (isNotPatient) {
-    const roleLabel = session.user.role === "doctor" ? "Doctor" : "Administrator";
-    return (
-      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
-        <div>
-          <h3 className="text-base font-semibold text-gray-900">Appointment Bookings</h3>
-          <p className="text-xs text-gray-500 mt-1">Bookings are reserved for patients only.</p>
-        </div>
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs text-blue-800 leading-relaxed">
-          <p className="font-semibold mb-1">Authenticated as {roleLabel}</p>
-          Only patients can schedule consultations and pay fees. To schedule an appointment, please log out and sign in using a Patient account.
-        </div>
-      </div>
-    );
-  }
-
   // Compute next 3 weeks of allowed dates based on doctor's availableDays
   const nextDates = useMemo(() => {
     const out = [];
@@ -69,6 +51,24 @@ function BookingForm({ doctor, session }) {
     }
     return out;
   }, [doctor]);
+
+  const isNotPatient = session && session.user.role !== "patient";
+
+  if (isNotPatient) {
+    const roleLabel = session.user.role === "doctor" ? "Doctor" : "Administrator";
+    return (
+      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div>
+          <h3 className="text-base font-semibold text-gray-900">Appointment Bookings</h3>
+          <p className="text-xs text-gray-500 mt-1">Bookings are reserved for patients only.</p>
+        </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs text-blue-800 leading-relaxed">
+          <p className="font-semibold mb-1">Authenticated as {roleLabel}</p>
+          Only patients can schedule consultations and pay fees. To schedule an appointment, please log out and sign in using a Patient account.
+        </div>
+      </div>
+    );
+  }
 
   const handleBook = async (e) => {
     e.preventDefault();

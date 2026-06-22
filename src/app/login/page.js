@@ -31,7 +31,10 @@ export default function Login() {
 
   const handleGoogle = async (e) => {
     e.preventDefault();
-    await authClient.signIn.social({ provider: "google" });
+    await authClient.signIn.social({ 
+      provider: "google",
+      callbackURL: "/dashboard"
+    });
   };
 
   return (
