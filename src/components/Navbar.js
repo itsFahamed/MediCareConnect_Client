@@ -103,6 +103,7 @@ export default function Navbar({ session }) {
                         src={user.image}
                         alt=""
                         className="w-7 h-7 rounded-full object-cover"
+                        referrerPolicy="no-referrer"
                         onError={() => setImgError(true)}
                       />
                     ) : (
