@@ -88,7 +88,7 @@ export default function DashboardSidebar({ user, role, isVerifiedDoctor }) {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="lg:hidden sticky top-0 z-30 bg-white border-b border-gray-200 px-4 h-14 flex items-center justify-between w-full">
+      <div className="lg:hidden sticky top-0 z-30 bg-white border-b border-gray-200 px-4 h-14 flex items-center justify-between w-full flex-shrink-0">
         <a href="/">
           <Logo size="sm" />
         </a>

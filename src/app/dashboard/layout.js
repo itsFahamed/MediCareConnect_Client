@@ -44,7 +44,7 @@ export default async function DashboardLayout({ children }) {
   }
 
   return (
-    <div className="in-dashboard flex min-h-screen bg-gray-50 text-gray-900">
+    <div className="in-dashboard flex flex-col lg:flex-row min-h-screen bg-gray-50 text-gray-900">
       <DashboardSidebar user={session.user} role={role} isVerifiedDoctor={isVerifiedDoctor} />
       <main className="flex-1 min-w-0 p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
